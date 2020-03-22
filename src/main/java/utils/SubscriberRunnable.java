@@ -38,7 +38,7 @@ public class SubscriberRunnable implements Runnable {
                 }
             };
             channel.basicConsume(queueName, true, consumer);
-            System.out.println("MyThread running");
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {

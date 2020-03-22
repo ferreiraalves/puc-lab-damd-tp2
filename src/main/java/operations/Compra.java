@@ -7,6 +7,7 @@ public class Compra {
     private int quant;
     private float val;
     private String corretora;
+
     @JsonIgnore
     private String ativo;
 
@@ -15,6 +16,14 @@ public class Compra {
         this.val = val;
         this.corretora = corretora;
         this.ativo = ativo;
+    }
+    public Compra(int quant, float val, String corretora) {
+        this.quant = quant;
+        this.val = val;
+        this.corretora = corretora;
+    }
+
+    public Compra() {
 
     }
 

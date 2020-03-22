@@ -1,3 +1,4 @@
+import operators.BolsaClient;
 import utils.CSVReader;
 import com.rabbitmq.client.*;
 import utils.Configurations;
@@ -12,8 +13,6 @@ public class BolsaServer {
     private static final String EXCHANGE_NAME = Configurations.getBrokerExchange();
 
     public static void main(String[] args) throws IOException, TimeoutException {
-        CSVReader cr = new CSVReader();
-        ArrayList<String> codigos = cr.getCodigos();
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(Configurations.getHost());
@@ -31,10 +30,28 @@ public class BolsaServer {
             public void handleDelivery(String consumerTag, Envelope envelope,
                                        AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body, "UTF-8");
-                System.out.println(" [x] Received '" + message + "'");
+                String routingKey = envelope.getRoutingKey();
+                System.out.println(" [x] Received '" + routingKey + "\t"  + message + "'");
+                String operation = routingKey.split("[.]")[0];
+                String ativo = routingKey.split("[.]")[1];
+                if (operation.equals("compra")){
+                    System.out.println("PROCESSANDO COMPRA");
+                    BolsaClient.processCompra(message, ativo);
+
+                } else if(operation.equals("venda")){
+                    System.out.println("PROCESSANDO VENDA");
+                } else{
+                    System.out.println("FALHA");
+                }
+
             }
         };
-        channel.basicConsume(queueName, true, consumer);
+        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+            String message = new String(delivery.getBody(), "UTF-8");
+            System.out.println(" [x] Received '" +
+                    delivery.getEnvelope().getRoutingKey() + "':'" + message + "'");
+        };
+        channel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
 
     }
 }
