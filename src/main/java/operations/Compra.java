@@ -1,15 +1,29 @@
 package operations;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Compra {
 
     private int quant;
     private float val;
     private String corretora;
+    @JsonIgnore
+    private String ativo;
 
-    public Compra(int quant, float val, String corretora) {
+    public Compra(int quant, float val, String corretora, String ativo) {
         this.quant = quant;
         this.val = val;
         this.corretora = corretora;
+        this.ativo = ativo;
+
+    }
+
+    public String getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
     }
 
     public int getQuant() {
