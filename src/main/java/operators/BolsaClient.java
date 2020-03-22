@@ -24,8 +24,16 @@ public class BolsaClient {
         try {
             Compra compra = mapper.readValue(msg, Compra.class);
             compra.setAtivo(ativo);
-            Offers.add(compra);
-            notifyBrokerQueue(compra);
+            Venda venda = Offers.checkMatchingOffer(compra);
+            if (venda == null){
+                Offers.add(compra);
+                notifyBrokerQueue(compra);
+            }else{
+                Offers.remove(venda);
+                Transaction transaction = new Transaction(compra, venda);
+                Transactions.add(transaction);
+                transaction.notifyBrokerQueue();
+            }
 
 
         } catch (JsonProcessingException e) {

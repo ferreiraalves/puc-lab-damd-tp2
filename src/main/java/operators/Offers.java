@@ -31,9 +31,11 @@ public class Offers {
     }
 
     public static Compra checkMatchingOffer(Venda venda) {
-        for (Compra compra : offerBookCompra.get(venda.getAtivo())){
-            if (compra.getVal() >= venda.getVal()){
-                return compra;
+        if(offerBookCompra.containsKey(venda.getAtivo())){
+            for (Compra compra : offerBookCompra.get(venda.getAtivo())){
+                if (compra.getVal() >= venda.getVal()){
+                    return compra;
+                }
             }
         }
         return null;
@@ -41,11 +43,14 @@ public class Offers {
 
 
     public static Venda checkMatchingOffer(Compra compra) {
-        for (Venda venda : offerBookVenda.get(compra.getAtivo())){
-            if (compra.getVal() >= venda.getVal()){
-                return venda;
+        if (offerBookVenda.containsKey(compra.getAtivo())){
+            for (Venda venda : offerBookVenda.get(compra.getAtivo())){
+                if (compra.getVal() >= venda.getVal()){
+                    return venda;
+                }
             }
         }
+
         return null;
     }
 
