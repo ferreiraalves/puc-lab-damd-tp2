@@ -38,7 +38,7 @@ public class Broker {
         subscriberThread = new Thread(r);
     }
 
-    public void send_msg(Compra compra) throws IOException {
+    public void sendMsg(Compra compra) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String msg = mapper.writeValueAsString(compra);
         String routingKey = "compra." + compra.getAtivo();
@@ -46,7 +46,7 @@ public class Broker {
         System.out.println(" [x] Sent '" + routingKey + "':'" + msg + "'");
     }
 
-    public void send_msg(Venda venda) throws IOException {
+    public void sendMsg(Venda venda) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String msg = mapper.writeValueAsString(venda);
         String routingKey = "venda." + venda.getAtivo();

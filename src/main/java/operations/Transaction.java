@@ -58,7 +58,7 @@ public class Transaction {
         this.id = id;
     }
 
-    public void notifyBrokerQueue(){
+    public void notifyBolsaQueue(){
         try {
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost(Configurations.getHost());

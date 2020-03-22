@@ -1,7 +1,6 @@
 import operations.Compra;
 import operations.Venda;
 import operators.Broker;
-import utils.CSVReader;
 import utils.Configurations;
 
 import java.io.IOException;
@@ -12,9 +11,9 @@ public class Main {
         try {
             broker.subscribe("*.*");
             Compra compra = new Compra(2,  3.50f, "Hugo", "BBDC4");
-            broker.send_msg(compra);
+            broker.sendMsg(compra);
             Venda venda = new Venda(2,  2.50f, "Jonas", "BBDC4");
-            broker.send_msg(venda);
+            broker.sendMsg(venda);
 
         } catch (IOException e) {
             e.printStackTrace();

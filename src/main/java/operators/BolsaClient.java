@@ -27,12 +27,12 @@ public class BolsaClient {
             Venda venda = Offers.checkMatchingOffer(compra);
             if (venda == null){
                 Offers.add(compra);
-                notifyBrokerQueue(compra);
+                notifyBolsaQueue(compra);
             }else{
                 Offers.remove(venda);
                 Transaction transaction = new Transaction(compra, venda);
                 Transactions.add(transaction);
-                transaction.notifyBrokerQueue();
+                transaction.notifyBolsaQueue();
             }
 
 
@@ -51,11 +51,11 @@ public class BolsaClient {
                 Offers.remove(compra);
                 Transaction transaction = new Transaction(compra, venda);
                 Transactions.add(transaction);
-                transaction.notifyBrokerQueue();
+                transaction.notifyBolsaQueue();
             }
             else{
                 Offers.add(venda);
-                notifyBrokerQueue(venda);
+                notifyBolsaQueue(venda);
 
             }
 
@@ -66,7 +66,7 @@ public class BolsaClient {
 
     }
 
-    public static void notifyBrokerQueue(Compra compra){
+    public static void notifyBolsaQueue(Compra compra){
         try {
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost(Configurations.getHost());
@@ -85,7 +85,7 @@ public class BolsaClient {
             e.printStackTrace();
         }
     }
-    public static void notifyBrokerQueue(Venda venda){
+    public static void notifyBolsaQueue(Venda venda){
         try {
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost(Configurations.getHost());
