@@ -17,6 +17,15 @@ public class Venda {
         this.ativo = ativo;
     }
 
+    public Venda(int quant, float val, String corretora) {
+        this.quant = quant;
+        this.val = val;
+        this.corretora = corretora;
+    }
+
+    public Venda() {
+    }
+
     public String getAtivo() {
         return ativo;
     }

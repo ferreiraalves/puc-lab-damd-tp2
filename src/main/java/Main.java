@@ -13,7 +13,7 @@ public class Main {
             broker.subscribe("*.*");
             Compra compra = new Compra(2,  3.50f, "Jonas", "BBDC4");
             broker.send_msg(compra);
-            Venda venda = new Venda(2,  3.50f, "Jonas", "BBDC4");
+            Venda venda = new Venda(2,  2.50f, "Jonas", "BBDC4");
             broker.send_msg(venda);
         } catch (IOException e) {
             e.printStackTrace();
