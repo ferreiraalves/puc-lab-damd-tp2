@@ -21,7 +21,7 @@ public class BolsaServer {
 
         channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
         String queueName = channel.queueDeclare().getQueue();
-        channel.queueBind(queueName, EXCHANGE_NAME, "compra.*");
+        channel.queueBind(queueName, EXCHANGE_NAME, "*.*");
 
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 

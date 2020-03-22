@@ -6,15 +6,18 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import operations.Compra;
+import operations.Venda;
+import utils.SubscriberRunnable;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 
 public class Broker {
-
     private Channel channel;
     private String exchangeName;
+    private Thread subscriberThread = new Thread();
+    private ArrayList<String> subscribedTopics = new ArrayList<String>();
 
     public Broker(String exchangeName) {
         ConnectionFactory factory = new ConnectionFactory();
@@ -29,6 +32,8 @@ public class Broker {
             e.printStackTrace();
         }
         this.exchangeName = exchangeName;
+        Runnable r = new SubscriberRunnable(subscribedTopics);
+        subscriberThread = new Thread(r);
     }
 
     public void send_msg(Compra compra) throws IOException {
@@ -36,6 +41,24 @@ public class Broker {
         String msg = mapper.writeValueAsString(compra);
         String routingKey = "compra." + compra.getAtivo();
         channel.basicPublish(this.exchangeName, routingKey, null, msg.getBytes("UTF-8"));
+        System.out.println(" [x] Sent '" + routingKey + "':'" + msg + "'");
+    }
+
+    public void send_msg(Venda venda) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        String msg = mapper.writeValueAsString(venda);
+        String routingKey = "venda." + venda.getAtivo();
+        channel.basicPublish(this.exchangeName, routingKey, null, msg.getBytes("UTF-8"));
+        System.out.println(" [x] Sent '" + routingKey + "':'" + msg + "'");
+    }
+
+    public void subscribe(String topic){
+        subscribedTopics.add(topic);
+        subscriberThread.interrupt();
+        Runnable r = new SubscriberRunnable(subscribedTopics);
+        subscriberThread = new Thread(r);
+        subscriberThread.start();
+
     }
 }
 
