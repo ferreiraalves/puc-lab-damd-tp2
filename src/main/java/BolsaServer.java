@@ -1,5 +1,6 @@
 import utils.CSVReader;
 import com.rabbitmq.client.*;
+import utils.Configurations;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class BolsaServer {
         ArrayList<String> codigos = cr.getCodigos();
 
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost(Configurations.getHost());
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 

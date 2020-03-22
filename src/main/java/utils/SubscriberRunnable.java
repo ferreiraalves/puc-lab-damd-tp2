@@ -17,7 +17,7 @@ public class SubscriberRunnable implements Runnable {
 
     public void run() {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost(Configurations.getHost());
         Connection connection = null;
         try {
             connection = factory.newConnection();

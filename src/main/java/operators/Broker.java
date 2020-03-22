@@ -7,6 +7,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import operations.Compra;
 import operations.Venda;
+import utils.Configurations;
 import utils.SubscriberRunnable;
 
 import java.io.IOException;
@@ -21,7 +22,8 @@ public class Broker {
 
     public Broker(String exchangeName) {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+
+        factory.setHost(Configurations.getHost());
         try {
             Connection connection = factory.newConnection();
             this.channel = connection.createChannel();
