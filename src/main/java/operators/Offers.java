@@ -48,7 +48,7 @@ public class Offers {
                 offerBookVenda.get(venda.getAtivo()).add(venda);
                 System.out.println("[INFO] NEW VENDA: " + mapper.writeValueAsString(venda));
             }else{
-                System.out.println("[ERROR] INVALID COMPRA" + mapper.writeValueAsString(venda));
+                System.out.println("[ERROR] INVALID COMPRA: " + mapper.writeValueAsString(venda));
             }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -82,10 +82,20 @@ public class Offers {
     }
 
     public static void remove(Compra compra){
-        offerBookCompra.get(compra.getAtivo()).remove(compra);
+        try{
+            System.out.println("[INFO] REMOVENDO COMPRA: " + mapper.writeValueAsString(compra));
+            offerBookCompra.get(compra.getAtivo()).remove(compra);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void remove(Venda venda){
-        offerBookVenda.get(venda.getAtivo()).remove(venda);
+        try{
+            System.out.println("[INFO] REMOVENDO COMPRA: " + mapper.writeValueAsString(venda));
+            offerBookVenda.get(venda.getAtivo()).remove(venda);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 }
