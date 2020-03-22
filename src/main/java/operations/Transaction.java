@@ -2,6 +2,7 @@ package operations;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
@@ -26,6 +27,11 @@ public class Transaction {
         this.compra = compra;
         this.venda = venda;
         this.id = UUID.randomUUID().toString();
+        try {
+            System.out.println("[INFO] NEW TRANSACTION: " + mapper.writeValueAsString(compra) + mapper.writeValueAsString(venda));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     public Compra getCompra() {

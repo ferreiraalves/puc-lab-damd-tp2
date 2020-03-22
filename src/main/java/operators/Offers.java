@@ -1,7 +1,10 @@
 package operators;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import operations.Compra;
 import operations.Venda;
+import utils.CSVReader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,20 +17,44 @@ public class Offers {
         return offerBookCompra;
     }
 
+    private static ObjectMapper mapper = new ObjectMapper();
+
+    public static ArrayList<String> validAtivos = CSVReader.getCodigos();
+
     public static void add(Compra compra){
-        if (!offerBookCompra.containsKey(compra.getAtivo())){
-            offerBookCompra.put(compra.getAtivo(),new ArrayList<Compra>());
+        try{
+            if (validAtivos.contains(compra.getAtivo())){
+                if (!offerBookCompra.containsKey(compra.getAtivo())){
+                    offerBookCompra.put(compra.getAtivo(),new ArrayList<Compra>());
+                }
+                offerBookCompra.get(compra.getAtivo()).add(compra);
+                System.out.println("[INFO] NEW COMPRA: " + mapper.writeValueAsString(compra));
+            }else{
+                System.out.println("[ERROR] INVALID COMPRA: " + mapper.writeValueAsString(compra));
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
-        offerBookCompra.get(compra.getAtivo()).add(compra);
-        System.out.println("NEW COMPRA ADDED");
+
+
     }
 
     public static void add(Venda venda){
-        if (!offerBookVenda.containsKey(venda.getAtivo())){
-            offerBookVenda.put(venda.getAtivo(),new ArrayList<Venda>());
+        try{
+            if(validAtivos.contains(venda.getAtivo())){
+                if (!offerBookVenda.containsKey(venda.getAtivo())){
+                    offerBookVenda.put(venda.getAtivo(),new ArrayList<Venda>());
+                }
+                offerBookVenda.get(venda.getAtivo()).add(venda);
+                System.out.println("[INFO] NEW VENDA: " + mapper.writeValueAsString(venda));
+            }else{
+                System.out.println("[ERROR] INVALID COMPRA" + mapper.writeValueAsString(venda));
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
-        offerBookVenda.get(venda.getAtivo()).add(venda);
-        System.out.println("NEW VENDA ADDED");
+
+
     }
 
     public static Compra checkMatchingOffer(Venda venda) {

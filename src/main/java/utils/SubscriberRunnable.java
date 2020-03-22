@@ -34,7 +34,7 @@ public class SubscriberRunnable implements Runnable {
                                            AMQP.BasicProperties properties, byte[] body) throws IOException {
                     String message = new String(body, "UTF-8");
                     String routingKey = envelope.getRoutingKey();
-                    System.out.println(" [x] Received '" + routingKey + "\t"  + message + "'");
+                    System.out.println(" [x] Received '" + routingKey + ":"  + message + "'");
                 }
             };
             channel.basicConsume(queueName, true, consumer);

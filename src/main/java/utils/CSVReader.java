@@ -9,13 +9,14 @@ import java.util.ArrayList;
 
 public class CSVReader {
 
-    private  ArrayList<String> codigos = new ArrayList<String>();
+    static  ArrayList<String> codigos = new ArrayList<String>();
 
     public CSVReader() {
         readcsv();
     }
 
-    public ArrayList<String> getCodigos() {
+    public static ArrayList<String> getCodigos() {
+        readcsv();
         return codigos;
     }
 
@@ -23,7 +24,7 @@ public class CSVReader {
         this.codigos = codigos;
     }
 
-    public void readcsv() {
+    public static void readcsv() {
 
         String csvFile = "1688438_acoes_bovespa.csv";
         String line = "";
@@ -35,7 +36,7 @@ public class CSVReader {
 
                 String[] campos = line.split(cvsSplitBy);
 
-                this.codigos.add(campos[0]);
+                codigos.add(campos[0]);
 
             }
         } catch (IOException e) {

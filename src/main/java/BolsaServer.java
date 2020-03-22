@@ -37,7 +37,6 @@ public class BolsaServer {
 
             } else if(operation.equals("venda")){
                 BolsaClient.processVenda(message, ativo);
-                System.out.println("PROCESSANDO VENDA");
             } else{
                 System.out.println("FALHA");
             }
