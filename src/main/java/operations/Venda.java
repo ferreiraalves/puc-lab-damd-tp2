@@ -1,10 +1,11 @@
-public class Compra {
+package operations;
 
+public class Venda {
     private int quant;
     private float val;
     private String corretora;
 
-    public Compra(int quant, float val, String corretora) {
+    public Venda(int quant, float val, String corretora) {
         this.quant = quant;
         this.val = val;
         this.corretora = corretora;
