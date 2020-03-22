@@ -9,7 +9,7 @@ import java.util.concurrent.TimeoutException;
 
 public class BolsaServer {
 
-    private static final String EXCHANGE_NAME = "bolsa-jonas123";
+    private static final String EXCHANGE_NAME = Configurations.getBrokerExchange();
 
     public static void main(String[] args) throws IOException, TimeoutException {
         CSVReader cr = new CSVReader();

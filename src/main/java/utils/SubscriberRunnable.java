@@ -9,7 +9,7 @@ import java.util.concurrent.TimeoutException;
 public class SubscriberRunnable implements Runnable {
 
     private final ArrayList<String> topics;
-    private static final String EXCHANGE_NAME = "bolsa-jonas123";
+    private static final String EXCHANGE_NAME = Configurations.getBolsaExchange();
 
     public SubscriberRunnable(ArrayList<String> topics) {
         this.topics = topics;
