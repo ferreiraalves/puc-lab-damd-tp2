@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="639.3435960591131" y="0.0">operations.Venda</node>
+    <node x="972.4843596059111" y="902.0">operators.Broker</node>
+    <node x="543.0" y="952.0">operators.Transactions</node>
+    <node x="516.9653325123153" y="1253.0">operators.BolsaClient</node>
+    <node x="853.25" y="1509.0">BolsaServer</node>
+    <node x="283.2435960591131" y="0.0">operations.Compra</node>
+    <node x="589.8339285714284" y="446.0">operations.Transaction</node>
+    <node x="967.7435960591131" y="75.0">utils.Configurations</node>
+    <node x="47.0" y="852.0">operators.Offers</node>
+    <node x="16.484359605911095" y="546.0">utils.CSVReader</node>
+    <node x="1059.9089285714285" y="558.5">utils.SubscriberRunnable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="operators.Broker" target="operations.Venda">
+      <point x="-36.375" y="-115.5" />
+      <point x="1081.609359605911" y="832.0" />
+      <point x="1048.7089285714283" y="832.0" />
+      <point x="1048.7089285714283" y="376.0" />
+      <point x="842.8435960591131" y="376.0" />
+      <point x="92.5" y="178.0" />
+    </edge>
+    <edge source="operators.Transactions" target="operations.Transaction">
+      <point x="83.0" y="-65.5" />
+      <point x="792.0" y="832.0" />
+      <point x="727.9589285714284" y="832.0" />
+      <point x="27.625" y="178.0" />
+    </edge>
+    <edge source="operations.Transaction" target="utils.Configurations">
+      <point x="88.39999999999998" y="-178.0" />
+      <point x="788.7339285714284" y="416.0" />
+      <point x="991.8435960591131" y="416.0" />
+      <point x="-96.4" y="103.0" />
+    </edge>
+    <edge source="operators.BolsaClient" target="utils.Configurations">
+      <point x="124.28571428571433" y="-103.0" />
+      <point x="786.2510467980296" y="1233.0" />
+      <point x="907.5" y="1233.0" />
+      <point x="907.5" y="426.0" />
+      <point x="1040.043596059113" y="426.0" />
+      <point x="-48.19999999999999" y="103.0" />
+    </edge>
+    <edge source="operations.Transaction" target="operations.Compra">
+      <point x="-44.200000000000045" y="-178.0" />
+      <point x="656.1339285714283" y="396.0" />
+      <point x="449.7435960591131" y="396.0" />
+      <point x="55.5" y="178.0" />
+    </edge>
+    <edge source="operators.BolsaClient" target="operations.Compra">
+      <point x="-124.28571428571422" y="-103.0" />
+      <point x="537.6796182266011" y="1233.0" />
+      <point x="0.0" y="1233.0" />
+      <point x="0.0" y="426.0" />
+      <point x="301.7435960591131" y="426.0" />
+      <point x="-92.5" y="178.0" />
+    </edge>
+    <edge source="operators.Offers" target="utils.CSVReader">
+      <point x="-190.0" y="-165.5" />
+      <point x="94.5" y="832.0" />
+      <point x="160.9843596059111" y="832.0" />
+      <point x="0.0" y="78.0" />
+    </edge>
+    <edge source="utils.SubscriberRunnable" target="utils.Configurations">
+      <point x="0.0" y="-65.5" />
+      <point x="1170.9089285714285" y="426.0" />
+      <point x="1088.243596059113" y="426.0" />
+      <point x="0.0" y="103.0" />
+    </edge>
+    <edge source="operators.Offers" target="operations.Venda">
+      <point x="190.0" y="-165.5" />
+      <point x="474.5" y="832.0" />
+      <point x="397.7435960591131" y="832.0" />
+      <point x="397.7435960591131" y="426.0" />
+      <point x="694.8435960591131" y="426.0" />
+      <point x="-55.5" y="178.0" />
+    </edge>
+    <edge source="operators.BolsaClient" target="operations.Venda">
+      <point x="82.85714285714289" y="-103.0" />
+      <point x="744.8224753694582" y="1223.0" />
+      <point x="896.5" y="1223.0" />
+      <point x="896.5" y="406.0" />
+      <point x="805.8435960591131" y="406.0" />
+      <point x="55.5" y="178.0" />
+    </edge>
+    <edge source="BolsaServer" target="operators.BolsaClient">
+      <point x="-55.5" y="-53.0" />
+      <point x="908.75" y="1484.0" />
+      <point x="661.9653325123153" y="1484.0" />
+      <point x="0.0" y="103.0" />
+    </edge>
+    <edge source="BolsaServer" target="utils.Configurations">
+      <point x="55.5" y="-53.0" />
+      <point x="1019.75" y="1484.0" />
+      <point x="1303.4714285714283" y="1484.0" />
+      <point x="1303.4714285714283" y="406.0" />
+      <point x="1184.643596059113" y="406.0" />
+      <point x="96.39999999999998" y="103.0" />
+    </edge>
+    <edge source="operators.Broker" target="operations.Compra">
+      <point x="-109.125" y="-115.5" />
+      <point x="1008.8593596059111" y="832.0" />
+      <point x="918.5625" y="832.0" />
+      <point x="918.5625" y="386.0" />
+      <point x="486.7435960591131" y="386.0" />
+      <point x="92.5" y="178.0" />
+    </edge>
+    <edge source="operators.BolsaClient" target="operators.Transactions">
+      <point x="0.0" y="-103.0" />
+      <point x="661.9653325123153" y="1203.0" />
+      <point x="709.0" y="1203.0" />
+      <point x="0.0" y="65.5" />
+    </edge>
+    <edge source="operators.Broker" target="utils.Configurations">
+      <point x="109.125" y="-115.5" />
+      <point x="1227.109359605911" y="832.0" />
+      <point x="1292.4089285714283" y="832.0" />
+      <point x="1292.4089285714283" y="416.0" />
+      <point x="1136.4435960591131" y="416.0" />
+      <point x="48.19999999999999" y="103.0" />
+    </edge>
+    <edge source="operators.Offers" target="operations.Compra">
+      <point x="-95.0" y="-165.5" />
+      <point x="189.5" y="822.0" />
+      <point x="315.98435960591115" y="822.0" />
+      <point x="315.98435960591115" y="416.0" />
+      <point x="338.7435960591131" y="416.0" />
+      <point x="-55.5" y="178.0" />
+    </edge>
+    <edge source="operations.Transaction" target="operations.Venda">
+      <point x="44.200000000000045" y="-178.0" />
+      <point x="744.5339285714284" y="426.0" />
+      <point x="768.8435960591131" y="426.0" />
+      <point x="18.5" y="178.0" />
+    </edge>
+    <edge source="operators.Broker" target="utils.SubscriberRunnable">
+      <point x="36.375" y="-115.5" />
+      <point x="1154.359359605911" y="832.0" />
+      <point x="1170.9089285714285" y="832.0" />
+      <point x="0.0" y="65.5" />
+    </edge>
+    <edge source="operators.BolsaClient" target="operators.Offers">
+      <point x="-82.85714285714278" y="-103.0" />
+      <point x="579.1081896551725" y="1223.0" />
+      <point x="284.5" y="1223.0" />
+      <point x="0.0" y="165.5" />
+    </edge>
+    <edge source="operators.BolsaClient" target="operations.Transaction">
+      <point x="-41.42857142857133" y="-103.0" />
+      <point x="620.536761083744" y="1213.0" />
+      <point x="532.5" y="1213.0" />
+      <point x="532.5" y="832.0" />
+      <point x="617.4589285714284" y="832.0" />
+      <point x="-82.875" y="178.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5259938837920489" x="652.0" y="807.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
